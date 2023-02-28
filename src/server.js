@@ -1,4 +1,5 @@
 const express = require("express");
+require("dotenv").config();
 const { default: mongoose } = require("mongoose");
 const { JSONForm, UserFormData } = require("./model/form");
 
@@ -32,7 +33,7 @@ app.post("/add-user-form", async (req, res) => {
 
 const start = async () => {
   try {
-    await mongoose.connect("mongodb://localhost/dfb");
+    await mongoose.connect(process.env.MONGO_URI);
     console.log("connected to db");
 
     app.listen(8000, () => {
